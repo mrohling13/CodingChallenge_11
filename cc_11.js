@@ -53,3 +53,59 @@ borrower1.returnBook("The Great Gatsby");
 console.log(borrower1.borrowedBooks);
 // Expected output: []
 
+
+// Task 3: Creating a Library Class 
+
+class Library {
+    constructor() {
+        this.books = []; // array of books 
+        this.borrowers = []; // array of borrowers
+    }
+    addBook(book) {
+        this.books.push(book); // adds books to arryy
+    }
+    listBooks() {
+        this.books.map(book => console.log(book.getDetails())); // lists book details
+    }
+    addBorrower(borrower) {
+        this.borrowers.push(borrower); // adds borrower to array
+    }
+    // Task 4: Implementing Book Borrowing
+    lendBook(borrowerId, isbn) {
+        const book = this.books.find(book => book.isbn === isbn); // locates book by isbn
+        const borrower = this.borrowers.find(borrower => borrower.borrowerId === borrowerId); // finds borrower by id
+        if (book && borrower) {
+        if (book.copies > 0) {
+            book.updateCopies(-1); // updates copies
+            borrower.borrowBook(book); // borrows selected book
+            } 
+            else {
+                console.log("No copies available");
+            }
+        } else {
+            console.log("Book or borrower not found")
+        }
+    }
+    // Task 5: Implementing Book Returns
+    returnBook(borrowerId, isbn) {
+        const borrower = this.borrowers.find(b => b.borrowerId === borrowerId); // finds borrower by id
+        const book = this.books.find(b => b.isbn === isbn); // finds book by isbn
+        if (book) {
+            book.updateCopies(1); // updates copies
+            if (borrower) {
+                borrower.returnBook(book); // returns book
+            }
+        }
+    }
+} // class for library
+
+
+// Test Cases for Task 3
+
+const library = new Library();
+library.addBook(book1);
+library.listBooks();
+// Expected output: "Title: The Great Gatsby, Author: F. Scott Fitzgerald, ISBN: 123456, Copies: 4"
+
+
+
