@@ -116,3 +116,12 @@ console.log(book1.getDetails());
 console.log(borrower1.borrowedBooks);
 // Expected output: ["The Great Gatsby"]
 
+// Test Cases for Task 5
+
+library.returnBook(201, 123456);
+console.log(book1.getDetails());
+// Expected output: "Title: The Great Gatsby, Author: F. Scott Fitzgerald, ISBN: 123456, Copies: 4"
+console.log(borrower1.borrowedBooks);
+// Expected output: []
+
+
